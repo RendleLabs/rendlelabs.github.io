@@ -67,7 +67,7 @@
     {
       "type": "object",
       "description": "Models a user identity resource.",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Required": {
           "type": "boolean",

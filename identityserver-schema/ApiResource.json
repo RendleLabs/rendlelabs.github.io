@@ -42,7 +42,7 @@
       "type": "object",
       "description": "Models the common data of API and identity resources.",
       "x-abstract": true,
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Enabled": {
           "type": "boolean",
@@ -103,7 +103,7 @@
     {
       "type": "object",
       "description": "Models a web API resource.",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "RequireResourceIndicator": {
           "type": "boolean",

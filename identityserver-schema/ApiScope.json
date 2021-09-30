@@ -67,7 +67,7 @@
     {
       "type": "object",
       "description": "Models access to an API scope",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Required": {
           "type": "boolean",
