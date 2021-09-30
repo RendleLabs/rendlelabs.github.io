@@ -3,7 +3,6 @@
   "title": "Client",
   "type": "object",
   "description": "Models an OpenID Connect or OAuth2 client",
-  "additionalProperties": true,
   "properties": {
     "$schema": {
       "type": [
@@ -327,7 +326,6 @@
     "Secret": {
       "type": "object",
       "description": "Models a client secret with identifier and expiration",
-      "additionalProperties": false,
       "properties": {
         "Description": {
           "type": [
@@ -399,7 +397,6 @@
     "ClientClaim": {
       "type": "object",
       "description": "A client claim",
-      "additionalProperties": false,
       "properties": {
         "Type": {
           "type": [
