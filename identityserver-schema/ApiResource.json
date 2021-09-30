@@ -5,7 +5,7 @@
     "Secret": {
       "type": "object",
       "description": "Models a client secret with identifier and expiration",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Description": {
           "type": [

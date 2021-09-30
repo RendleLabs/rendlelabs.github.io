@@ -3,7 +3,7 @@
   "title": "Client",
   "type": "object",
   "description": "Models an OpenID Connect or OAuth2 client",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "$schema": {
       "type": [
