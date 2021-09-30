@@ -5,6 +5,12 @@
   "description": "Models an OpenID Connect or OAuth2 client",
   "additionalProperties": false,
   "properties": {
+    "$schema": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "Enabled": {
       "type": "boolean",
       "description": "Specifies if client is enabled (defaults to true)"
