@@ -1,11 +1,72 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "ApiResource",
+  "title": "ApiResources",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Resources": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/ApiResource"
+      }
+    }
+  },
   "definitions": {
+    "ApiResource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        },
+        {
+          "type": "object",
+          "description": "Models a web API resource.",
+          "additionalProperties": false,
+          "properties": {
+            "RequireResourceIndicator": {
+              "type": "boolean",
+              "description": "Indicates if this API resource requires the resource indicator to request it, \nand expects access tokens issued to it will only ever contain this API resource as the audience."
+            },
+            "ApiSecrets": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "description": "The API secret is used for the introspection endpoint. The API can authenticate with introspection using the API name and secret.",
+              "items": {
+                "$ref": "#/definitions/Secret"
+              }
+            },
+            "Scopes": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "description": "Models the scopes this API resource allows.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "AllowedAccessTokenSigningAlgorithms": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "description": "Signing algorithm for access token. If empty, will use the server default signing algorithm.",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
     "Secret": {
       "type": "object",
       "description": "Models a client secret with identifier and expiration",
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "Description": {
           "type": [
@@ -42,7 +103,7 @@
       "type": "object",
       "description": "Models the common data of API and identity resources.",
       "x-abstract": true,
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "Enabled": {
           "type": "boolean",
@@ -95,51 +156,5 @@
         }
       }
     }
-  },
-  "allOf": [
-    {
-      "$ref": "#/definitions/Resource"
-    },
-    {
-      "type": "object",
-      "description": "Models a web API resource.",
-      "additionalProperties": true,
-      "properties": {
-        "RequireResourceIndicator": {
-          "type": "boolean",
-          "description": "Indicates if this API resource requires the resource indicator to request it, \nand expects access tokens issued to it will only ever contain this API resource as the audience."
-        },
-        "ApiSecrets": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "description": "The API secret is used for the introspection endpoint. The API can authenticate with introspection using the API name and secret.",
-          "items": {
-            "$ref": "#/definitions/Secret"
-          }
-        },
-        "Scopes": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "description": "Models the scopes this API resource allows.",
-          "items": {
-            "type": "string"
-          }
-        },
-        "AllowedAccessTokenSigningAlgorithms": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "description": "Signing algorithm for access token. If empty, will use the server default signing algorithm.",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    }
-  ]
+  }
 }

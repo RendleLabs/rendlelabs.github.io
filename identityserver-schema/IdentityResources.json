@@ -1,12 +1,47 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "IdentityResource",
+  "title": "IdentityResources",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Resources": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/IdentityResource"
+      }
+    }
+  },
   "definitions": {
+    "IdentityResource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        },
+        {
+          "type": "object",
+          "description": "Models a user identity resource.",
+          "additionalProperties": false,
+          "properties": {
+            "Required": {
+              "type": "boolean",
+              "description": "Specifies whether the user can de-select the scope on the consent screen (if the consent screen wants to implement such a feature). Defaults to false."
+            },
+            "Emphasize": {
+              "type": "boolean",
+              "description": "Specifies whether the consent screen will emphasize this scope (if the consent screen wants to implement such a feature). \nUse this setting for sensitive or important scopes. Defaults to false."
+            }
+          }
+        }
+      ]
+    },
     "Resource": {
       "type": "object",
       "description": "Models the common data of API and identity resources.",
       "x-abstract": true,
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "Enabled": {
           "type": "boolean",
@@ -59,25 +94,5 @@
         }
       }
     }
-  },
-  "allOf": [
-    {
-      "$ref": "#/definitions/Resource"
-    },
-    {
-      "type": "object",
-      "description": "Models a user identity resource.",
-      "additionalProperties": true,
-      "properties": {
-        "Required": {
-          "type": "boolean",
-          "description": "Specifies whether the user can de-select the scope on the consent screen (if the consent screen wants to implement such a feature). Defaults to false."
-        },
-        "Emphasize": {
-          "type": "boolean",
-          "description": "Specifies whether the consent screen will emphasize this scope (if the consent screen wants to implement such a feature). \nUse this setting for sensitive or important scopes. Defaults to false."
-        }
-      }
-    }
-  ]
+  }
 }

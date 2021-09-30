@@ -1,12 +1,47 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "ApiScope",
+  "title": "ApiScopes",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Scopes": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/ApiScope"
+      }
+    }
+  },
   "definitions": {
+    "ApiScope": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Resource"
+        },
+        {
+          "type": "object",
+          "description": "Models access to an API scope",
+          "additionalProperties": false,
+          "properties": {
+            "Required": {
+              "type": "boolean",
+              "description": "Specifies whether the user can de-select the scope on the consent screen. Defaults to false."
+            },
+            "Emphasize": {
+              "type": "boolean",
+              "description": "Specifies whether the consent screen will emphasize this scope. Use this setting for sensitive or important scopes. Defaults to false."
+            }
+          }
+        }
+      ]
+    },
     "Resource": {
       "type": "object",
       "description": "Models the common data of API and identity resources.",
       "x-abstract": true,
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "Enabled": {
           "type": "boolean",
@@ -59,25 +94,5 @@
         }
       }
     }
-  },
-  "allOf": [
-    {
-      "$ref": "#/definitions/Resource"
-    },
-    {
-      "type": "object",
-      "description": "Models access to an API scope",
-      "additionalProperties": true,
-      "properties": {
-        "Required": {
-          "type": "boolean",
-          "description": "Specifies whether the user can de-select the scope on the consent screen. Defaults to false."
-        },
-        "Emphasize": {
-          "type": "boolean",
-          "description": "Specifies whether the consent screen will emphasize this scope. Use this setting for sensitive or important scopes. Defaults to false."
-        }
-      }
-    }
-  ]
+  }
 }
