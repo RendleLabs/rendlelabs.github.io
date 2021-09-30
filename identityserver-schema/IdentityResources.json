@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "IdentityResources",
   "type": "object",
-  "additionalProperties": true,
   "properties": {
     "Resources": {
       "type": [
@@ -23,7 +22,6 @@
         {
           "type": "object",
           "description": "Models a user identity resource.",
-          "additionalProperties": true,
           "properties": {
             "Required": {
               "type": "boolean",
@@ -41,7 +39,6 @@
       "type": "object",
       "description": "Models the common data of API and identity resources.",
       "x-abstract": true,
-      "additionalProperties": true,
       "properties": {
         "Enabled": {
           "type": "boolean",
