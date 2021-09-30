@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "IdentityResource",
+  "definitions": {
+    "Resource": {
+      "type": "object",
+      "description": "Models the common data of API and identity resources.",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Enabled": {
+          "type": "boolean",
+          "description": "Indicates if this resource is enabled. Defaults to true."
+        },
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "The unique name of the resource."
+        },
+        "DisplayName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Display name of the resource."
+        },
+        "Description": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Description of the resource."
+        },
+        "ShowInDiscoveryDocument": {
+          "type": "boolean",
+          "description": "Specifies whether this scope is shown in the discovery document. Defaults to true."
+        },
+        "UserClaims": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "List of associated user claims that should be included when this resource is requested.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Properties": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Gets or sets the custom properties for the resource.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Resource"
+    },
+    {
+      "type": "object",
+      "description": "Models a user identity resource.",
+      "additionalProperties": false,
+      "properties": {
+        "Required": {
+          "type": "boolean",
+          "description": "Specifies whether the user can de-select the scope on the consent screen (if the consent screen wants to implement such a feature). Defaults to false."
+        },
+        "Emphasize": {
+          "type": "boolean",
+          "description": "Specifies whether the consent screen will emphasize this scope (if the consent screen wants to implement such a feature). \nUse this setting for sensitive or important scopes. Defaults to false."
+        }
+      }
+    }
+  ]
+}

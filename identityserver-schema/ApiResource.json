@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ApiResource",
+  "definitions": {
+    "Secret": {
+      "type": "object",
+      "description": "Models a client secret with identifier and expiration",
+      "additionalProperties": false,
+      "properties": {
+        "Description": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Gets or sets the description."
+        },
+        "Value": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Gets or sets the value."
+        },
+        "Expiration": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Gets or sets the expiration.",
+          "format": "date-time"
+        },
+        "Type": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Gets or sets the type of the client secret."
+        }
+      }
+    },
+    "Resource": {
+      "type": "object",
+      "description": "Models the common data of API and identity resources.",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Enabled": {
+          "type": "boolean",
+          "description": "Indicates if this resource is enabled. Defaults to true."
+        },
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "The unique name of the resource."
+        },
+        "DisplayName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Display name of the resource."
+        },
+        "Description": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Description of the resource."
+        },
+        "ShowInDiscoveryDocument": {
+          "type": "boolean",
+          "description": "Specifies whether this scope is shown in the discovery document. Defaults to true."
+        },
+        "UserClaims": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "List of associated user claims that should be included when this resource is requested.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Properties": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Gets or sets the custom properties for the resource.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Resource"
+    },
+    {
+      "type": "object",
+      "description": "Models a web API resource.",
+      "additionalProperties": false,
+      "properties": {
+        "RequireResourceIndicator": {
+          "type": "boolean",
+          "description": "Indicates if this API resource requires the resource indicator to request it, \nand expects access tokens issued to it will only ever contain this API resource as the audience."
+        },
+        "ApiSecrets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "The API secret is used for the introspection endpoint. The API can authenticate with introspection using the API name and secret.",
+          "items": {
+            "$ref": "#/definitions/Secret"
+          }
+        },
+        "Scopes": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Models the scopes this API resource allows.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "AllowedAccessTokenSigningAlgorithms": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Signing algorithm for access token. If empty, will use the server default signing algorithm.",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}
