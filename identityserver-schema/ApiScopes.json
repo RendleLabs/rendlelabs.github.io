@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "ApiScopes",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "Scopes": {
       "type": [
@@ -23,7 +23,7 @@
         {
           "type": "object",
           "description": "Models access to an API scope",
-          "additionalProperties": false,
+          "additionalProperties": true,
           "properties": {
             "Required": {
               "type": "boolean",
@@ -41,7 +41,7 @@
       "type": "object",
       "description": "Models the common data of API and identity resources.",
       "x-abstract": true,
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Enabled": {
           "type": "boolean",
